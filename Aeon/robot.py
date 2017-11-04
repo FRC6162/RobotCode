@@ -46,12 +46,12 @@ class MyRobot(wpilib.IterativeRobot):
 
     def teleopPeriodic(self):
         """This function is called periodically during operator control."""
-        self.robot_drive.arcadeDrive(self.stick)
-        if self.getRawButton(1)==True:
-            self.Motor1.set(1）
-        elif self.getRawButton(2)==True:
-            self.Motor1.set(-0.3）
-        else:
+        #self.robot_drive.arcadeDrive(self.stick)
+        if self.stick.getRawButton(1)==True:
+            self.Motor1.set(-1)
+        if self.stick.getRawButton(2)==True:
+            self.Motor1.set(0.25)
+        if self.stick.getRawButton(1)==False and self.stick.getRawButton(2)==False:
             self.Motor1.set(0)
             #This number ranges from -1 to 1-fully reverse to fully forward
             #self.Servo1.set(0.8) #This number ranges from 0 to 1-fully left to fullt right
