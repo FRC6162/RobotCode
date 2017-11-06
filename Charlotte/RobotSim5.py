@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Charlotte2
+
 #FRC Robot Climbing Simulator
 #Written by Charlotte Chen and William Neal
 #Email contact: charlottechen418@gmail.com, wneal@lia-edu.ca
 #Team 6162 Cap Alpaca
 #London International Academy
 #London, ON
-<<<<<<< HEAD
-=======
-=======
-#This is a GUI program using classes for organization
->>>>>>> master
->>>>>>> Charlotte2
 
 
 #Read - import required modules
@@ -27,27 +18,12 @@ from tkinter import *
 import time
 
         
-        
-<<<<<<< HEAD
 #This function is not currently being used - November 6, 2017
-=======
-<<<<<<< HEAD
-#This function is not currently being used - November 6, 2017
-=======
-
->>>>>>> master
->>>>>>> Charlotte2
 def motorPower(RPM):
     #Approximate data for Vex 775Pro taken from datasheet
     return -0.00000425983*(RPM-9370.0)**2+347.0
 
-<<<<<<< HEAD
-
-#This function initialized a "Robot" object with all of the data required for climbing calculations.
-=======
-<<<<<<< HEAD
-
-#This function initialized a "Robot" object with all of the data required for climbing calculations.
+#This function initializes a "Robot" object with all of the data required for climbing calculations.
 class RobotC(object):
     def __init__(self,G1,G2,G3,G4,Gear1,Gear2,Gear3,Gear4,S1,S2,ratio,Drive_Torque,Max_Force,Climber_RPM,Climber_Frequency,Climb_Speed,Climb_Time,Required_Power,Mass):
         RC=[]
@@ -63,8 +39,7 @@ class RobotC(object):
         self.S2=S2
         self.ratio=ratio #Variable to store the gear ratio arising from all of the gear stages.
         self.Drive_Torque=Drive_Torque #Other variables; names indicate use.
-=======
->>>>>>> Charlotte2
+
 class RobotC(object):
     def __init__(self,G1,G2,G3,G4,Gear1,Gear2,Gear3,Gear4,S1,S2,ratio,Drive_Torque,Max_Force,Climber_RPM,Climber_Frequency,Climb_Speed,Climb_Time,Required_Power,Mass):
         RC=[]
@@ -78,14 +53,8 @@ class RobotC(object):
         self.Gear4=Gear4
         self.S1=S1 #0, 1 or 2 planetary gear stages are allowed
         self.S2=S2
-<<<<<<< HEAD
         self.ratio=ratio #Variable to store the gear ratio arising from all of the gear stages.
         self.Drive_Torque=Drive_Torque #Other variables; names indicate use.
-=======
-        self.ratio=ratio
-        self.Drive_Torque=Drive_Torque
->>>>>>> master
->>>>>>> Charlotte2
         self.Max_Force=Max_Force
         self.Climber_RPM=Climber_RPM
         self.Climber_Frequency=Climber_Frequency
