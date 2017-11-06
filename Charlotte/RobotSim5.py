@@ -1,4 +1,9 @@
-#This is a GUI program using classes for organization
+#FRC Robot Climbing Simulator
+#Written by Charlotte Chen and William Neal
+#Email contact: charlottechen418@gmail.com, wneal@lia-edu.ca
+#Team 6162 Cap Alpaca
+#London International Academy
+#London, ON
 
 
 #Read - import required modules
@@ -13,26 +18,28 @@ import time
 
         
         
-
+#This function is not currently being used - November 6, 2017
 def motorPower(RPM):
     #Approximate data for Vex 775Pro taken from datasheet
     return -0.00000425983*(RPM-9370.0)**2+347.0
 
+
+#This function initialized a "Robot" object with all of the data required for climbing calculations.
 class RobotC(object):
-    def __init__(self,G1,G2,G3,G4,Geal1,Geal2,Geal3,Geal4,S1,S2,ratio,Drive_Torque,Max_Force,Climber_RPM,Climber_Frequency,Climb_Speed,Climb_Time,Required_Power,Mass):
+    def __init__(self,G1,G2,G3,G4,Gear1,Gear2,Gear3,Gear4,S1,S2,ratio,Drive_Torque,Max_Force,Climber_RPM,Climber_Frequency,Climb_Speed,Climb_Time,Required_Power,Mass):
         RC=[]
-        self.G1=G1
+        self.G1=G1#0, 2 or 4 gears allowed in our climbing competition.
         self.G2=G2
         self.G3=G3
         self.G4=G4
-        self.Geal1=Geal1
-        self.Geal2=Geal2
-        self.Geal3=Geal3
-        self.Geal4=Geal4
-        self.S1=S1
+        self.Gear1=Gear1
+        self.Gear2=Gear2
+        self.Gear3=Gear3
+        self.Gear4=Gear4
+        self.S1=S1 #0, 1 or 2 planetary gear stages are allowed
         self.S2=S2
-        self.ratio=ratio
-        self.Drive_Torque=Drive_Torque
+        self.ratio=ratio #Variable to store the gear ratio arising from all of the gear stages.
+        self.Drive_Torque=Drive_Torque #Other variables; names indicate use.
         self.Max_Force=Max_Force
         self.Climber_RPM=Climber_RPM
         self.Climber_Frequency=Climber_Frequency
