@@ -21,7 +21,7 @@ class MyRobot(wpilib.IterativeRobot):
         should be used for any initialization code.
         """
         self.robot_drive = wpilib.RobotDrive(0,1)
-        self.stick = wpilib.Joystick(1)
+        self.stick = wpilib.Joystick(0)
         self.Motor1 = wpilib.VictorSP(4)
         self.Motor2 = wpilib.VictorSP(5)
         self.Switch1 = wpilib.DigitalInput(0)

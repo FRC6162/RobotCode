@@ -20,7 +20,7 @@ class MyRobot(wpilib.IterativeRobot):
         should be used for any initialization code.
         """
         self.robot_drive = wpilib.RobotDrive(0,1)
-        self.stick = wpilib.Joystick(1)
+        self.stick = wpilib.Joystick(0)
         self.switch1 = wpilib.DigitalInput(0)
         self.switch2 = wpilib.DigitalInput(1)
         self.switch3 = wpilib.DigitalInput(2)
@@ -49,19 +49,19 @@ class MyRobot(wpilib.IterativeRobot):
         """This function is called periodically during operator control."""
         self.robot_drive.arcadeDrive(self.stick)
         if self.switch1.get()==True:
-            self.motor1.set(self.stick.getRawAxis(1))
+            self.motor1.set(1)
             self.Servo1.set(self.stick.getRawAxis(2))
             
         else:
-            self.motor1.set(self.stick.getAxis(5))
-            self.Servo1.set(self.stick.getAxis(6))
+            self.motor1.set(0)
+            self.Servo1.set(self.stick.getRawAxis(6))
         
         if self.switch2.get()==True:
-            self.motor2.set(int(self.stick.getRawButton(1)))
-            self.Servo2.set(int(self.stick.getRawButton(2)))
+            self.motor2.set(self.stick.getRawAxis(1))
+            #self.Servo2.set(int(self.stick.getRawButton(2)))
         else:
-            self.motor2.set(int(self.stick.getRawButton(3)))
-            self.Servo2.set(int(self.stick.getRawButton(4)))
+            self.motor2.set(self.stick.getRawAxis(3))
+            #self.Servo2.set(int(self.stick.getRawButton(4)))
 
     def testPeriodic(self):
         """This function is called periodically during test mode."""
