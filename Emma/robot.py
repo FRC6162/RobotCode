@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct 10 16:13:16 2017
-
 @author: fy
 """
 
@@ -49,23 +48,23 @@ class MyRobot(wpilib.IterativeRobot):
         """This function is called periodically during operator control."""
         self.robot_drive.arcadeDrive(self.stick)
         if self.switch1.get()==True:
-            self.motor1.set(self.stick.getRawAxis(1))
+            self.motor1.set(1)
             self.Servo1.set(self.stick.getRawAxis(2))
             
         else:
-            self.motor1.set(self.stick.getRawAxis(5))
+            self.motor1.set(0)
             self.Servo1.set(self.stick.getRawAxis(6))
         
         if self.switch2.get()==True:
-            self.motor2.set(1)
+            self.motor2.set(self.stick.getRawAxis(1))
             #self.Servo2.set(int(self.stick.getRawButton(2)))
         else:
-            self.motor2.set(2)
-            #self.Servo2.set(int(self.stick.getRawButton(2)))
+            self.motor2.set(self.stick.getRawAxis(3))
+            #self.Servo2.set(int(self.stick.getRawButton(4)))
 
     def testPeriodic(self):
         """This function is called periodically during test mode."""
         wpilib.LiveWindow.run()
 
 if __name__ == "__main__":
-    wpilib.run(MyRobot)
+wpilib.run(MyRobot)
