@@ -39,7 +39,7 @@ class MyRobot(wpilib.IterativeRobot):
 
         # Check if we've completed 100 loops (approximately 2 seconds)
         if self.auto_loop_counter < 100:
-            self.robot_drive.drive(-0.5, 0) # Drive forwards at half speed
+            self.robot_drive.drive(-0.8, 0) # Drive forwards at half speed
             self.auto_loop_counter += 1
         else:
             self.robot_drive.drive(0, 0)    #Stop robot
@@ -59,12 +59,18 @@ class MyRobot(wpilib.IterativeRobot):
             self.motor2.set(self.stick.getRawAxis(1))
             #self.Servo2.set(int(self.stick.getRawButton(2)))
         else:
-            self.motor2.set(self.stick.getRawAxis(3))
+            self.motor2.set(self.stick.getRawAxis(5))
             #self.Servo2.set(int(self.stick.getRawButton(4)))
+        if self.stick.getRawButton(1)==True:
+            self.Motor1.set(-1)
+        if self.stick.getRawButton(2)==True:
+            self.Motor1.set(0.5)
+        if self.stick.getRawButton(1)==False and self.stick.getRawButton(2)==False:
+            self.Motor1.set(0)
 
     def testPeriodic(self):
         """This function is called periodically during test mode."""
         wpilib.LiveWindow.run()
 
 if __name__ == "__main__":
-wpilib.run(MyRobot)
+    wpilib.run(MyRobot)
