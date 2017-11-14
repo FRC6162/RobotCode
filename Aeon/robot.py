@@ -55,7 +55,6 @@ class MyRobot(wpilib.IterativeRobot):
             self.Motor1.set(0)
             #This number ranges from -1 to 1-fully reverse to fully forward
             #self.Servo1.set(0.8) #This number ranges from 0 to 1-fully left to fullt right
-<<<<<<< HEAD
         if self.Switch1.get() == True:
             if self.stick.getRawButton(3)==True:
                 self.Motor2.set(-1)
@@ -65,9 +64,7 @@ class MyRobot(wpilib.IterativeRobot):
                 self.Motor2.set(0)
                 #This number ranges from -1 to 1-fully reverse to fully forward
        
-=======
 
->>>>>>> origin/AeonEdits
     def testPeriodic(self):
         """This function is called periodically during test mode."""
         wpilib.LiveWindow.run()
