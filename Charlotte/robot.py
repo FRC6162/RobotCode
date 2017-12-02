@@ -20,7 +20,7 @@ class MyRobot(wpilib.IterativeRobot):
         This function is called upon program startup and
         should be used for any initialization code.
         """
-        self.robot_drive = wpilib.RobotDrive(0,1)
+        self.robot_drive = wpilib.RobotDrive(0,1,2,3)
         self.stick = wpilib.Joystick(1)
         self.Motor1 = wpilib.VictorSP(4)
         self.Motor2 = wpilib.VictorSP(5)
@@ -28,7 +28,7 @@ class MyRobot(wpilib.IterativeRobot):
         self.Switch2 = wpilib.DigitalInput(1)
         self.Servo1 = wpilib.Servo(6)
         self.Servo2 = wpilib.Servo(7)
-        
+        self.robot_drive = wpilib.RobotDrive(0,True)
 
     def autonomousInit(self):
         """This function is run once each time the robot enters autonomous mode."""
@@ -46,16 +46,20 @@ class MyRobot(wpilib.IterativeRobot):
 
     def teleopPeriodic(self):
         """This function is called periodically during operator control."""
-        #self.robot_drive.arcadeDrive(self.stick)
-        if self.stick.getRawButton(1)==True:
-            self.Motor1.set(-1)
-        if self.stick.getRawButton(2)==True:
-            self.Motor1.set(0.5)
-        if self.stick.getRawButton(1)==False and self.stick.getRawButton(2)==False:
-            self.Motor1.set(0)
-            #This number ranges from -1 to 1-fully reverse to fully forward
-            #self.Servo1.set(0.8) #This number ranges from 0 to 1-fully left to fullt right
-       
+        self.robot_drive.arcadeDrive(self.stick)
+        if self.stick.getRawButton()==True:
+            self.Motor1.set(self.stick.getRawAxis(1))   #This number ranges from -1 to 1-fully reverse to fully forward
+            self.Servo1.set(self.stick.getRawAxis(2)) #This number ranges from 0 to 1-fully left to fullt right
+        else:
+            self.Motor1.set(self.stick.getRawAxis(3))
+            self.Servo1.set(self.stick.getRawAxis(4))
+        if self.Switch2.get()==True:
+            self.Motor2.set(self.stick.getRawAxis(5))
+            self.Servo2.set(self.stick.getRawAxis(6))
+        else:
+            self.Motor2.set(0)
+            self.Servo2.set(0)
+
     def testPeriodic(self):
         """This function is called periodically during test mode."""
         wpilib.LiveWindow.run()
