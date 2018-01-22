@@ -18,8 +18,8 @@ import wpilib
 #wpilib.IterativeRobot:
 import hal
 import threading
-from ._impl.utils import match_arglist, HasAttribute
-from .sendablebuilder import SendableBuilder
+from wpilib._impl.utils import match_arglist, HasAttribute
+from wpilib.sendablebuilder import SendableBuilder
 
 __all__ = ["SmartDashboard"]
 class Data:
@@ -458,6 +458,10 @@ class MyRobot(wpilib.IterativeRobot):#Builds on a base class
         self.Servo1 = wpilib.Servo(6)
         self.Servo2 = wpilib.Servo(7)       
         self.camera1 =  wpilib.CameraServer.launch('vision.py:main')
+        NetworkTables.initialize(server='10.61.62.2')
+        sd = NetworkTables.getTable('SmartDashboard')
+        sd.putNumber('someNumber', 1234)
+        
         
             
     def autonomousInit(self):
