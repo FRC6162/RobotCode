@@ -9,10 +9,10 @@ Created on Tue Oct 10 16:13:16 2017
 """
     This is a good foundation to build your robot code on
 """
+import wpilib
 import ctre
 from networktables import NetworkTables
 sd = NetworkTables.getTable('SmartDashboard')
-import wpilib
 #From networktables import NetworkTables
 #wpilib: contains many classes and functions
 #for programming FRC robots.
