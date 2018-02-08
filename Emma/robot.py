@@ -9,6 +9,7 @@ Created on Tue Oct 10 16:13:16 2017
 """
     This is a good foundation to build your robot code on
 """
+import sys
 import wpilib
 import ctre
 from networktables import NetworkTables
@@ -21,6 +22,8 @@ import hal
 import threading
 from wpilib._impl.utils import match_arglist, HasAttribute
 from wpilib.sendablebuilder import SendableBuilder
+import logging
+import time
 
 __all__ = ["SmartDashboard"]
 class Data:
@@ -55,17 +58,17 @@ class SmartDashboard:
     # SmartDashboard. To view using the SmartDashboard, you can launch it
     # like so:
     #
-    #     SmartDashboard.jar ip 127.0.0.1
-    #
-    
-    import time    
+    #     SmartDashboard.jar ip 127.0.0.1   
     # To see messages from networktables, you must setup logging
-    import logging
     logging.basicConfig(level=logging.DEBUG)
     
     NetworkTables.initialize()
     sd = NetworkTables.getTable("SmartDashboard")
-    
+
+    if len(sys.argv) != 2:
+        print("Error: specify an IP to connect to!")
+        exit(0)
+    ip = sys.argv[1]    
     i = 0
     while True:
         print('dsTime:', sd.getNumber('dsTime', 'N/A'))
