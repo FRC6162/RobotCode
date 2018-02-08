@@ -9,6 +9,7 @@ Created on Tue Oct 10 16:13:16 2017
 """
     This is a good foundation to build your robot code on
 """
+import ctre
 from networktables import NetworkTables
 sd = NetworkTables.getTable('SmartDashboard')
 import wpilib
@@ -43,6 +44,35 @@ class SmartDashboard:
         # sd.putXXX and sd.getXXX work as expected here
     
     """
+    # This is a NetworkTables server (eg, the robot or simulator side).
+    #
+    # On a real robot, you probably would create an instance of the 
+    # wpilib.SmartDashboard object and use that instead -- but it's really
+    # just a passthru to the underlying NetworkTable object.
+    #
+    # When running, this will continue incrementing the value 'robotTime',
+    # and the value should be visible to networktables clients such as 
+    # SmartDashboard. To view using the SmartDashboard, you can launch it
+    # like so:
+    #
+    #     SmartDashboard.jar ip 127.0.0.1
+    #
+    
+    import time    
+    # To see messages from networktables, you must setup logging
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+    
+    NetworkTables.initialize()
+    sd = NetworkTables.getTable("SmartDashboard")
+    
+    i = 0
+    while True:
+        print('dsTime:', sd.getNumber('dsTime', 'N/A'))
+        sd.putNumber('robotTime', i)
+        time.sleep(1)
+        i += 1
+
     # The NetworkTable used by SmartDashboard
     table = None
     # A table linking tables in the SmartDashboard to the SmartDashboardData
