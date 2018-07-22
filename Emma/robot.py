@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Oct 17 16:31:49 2017
+Created on Tue Oct 10 16:13:16 2017
 
-@author: chenquancheng
+@author: fy
 """
 
 #!/usr/bin/env python3
@@ -22,14 +21,16 @@ class MyRobot(wpilib.IterativeRobot):
         """
         self.robot_drive = wpilib.RobotDrive(0,1)
         self.stick = wpilib.Joystick(1)
-        self.Motor1 = wpilib.VictorSP(4)
-        self.Motor2 = wpilib.VictorSP(5)
-        self.Switch1 = wpilib.DigitalInput(0)
-        self.Switch2 = wpilib.DigitalInput(1)
+        self.switch1 = wpilib.DigitalInput(0)
+        self.switch2 = wpilib.DigitalInput(1)
+        self.switch3 = wpilib.DigitalInput(2)
+        self.switch4 = wpilib.DigitalInput(3)
+        self.motor1 = wpilib.VictorSP(4)
+        self.motor2 = wpilib.VictorSP(5)
         self.Servo1 = wpilib.Servo(6)
         self.Servo2 = wpilib.Servo(7)
         
-
+            
     def autonomousInit(self):
         """This function is run once each time the robot enters autonomous mode."""
         self.auto_loop_counter = 0
@@ -46,16 +47,22 @@ class MyRobot(wpilib.IterativeRobot):
 
     def teleopPeriodic(self):
         """This function is called periodically during operator control."""
-        #self.robot_drive.arcadeDrive(self.stick)
-        if self.stick.getRawButton(1)==True:
-            self.Motor1.set(-1)
-        if self.stick.getRawButton(2)==True:
-            self.Motor1.set(0.5)
-        if self.stick.getRawButton(1)==False and self.stick.getRawButton(2)==False:
-            self.Motor1.set(0)
-            #This number ranges from -1 to 1-fully reverse to fully forward
-            #self.Servo1.set(0.8) #This number ranges from 0 to 1-fully left to fullt right
-       
+        self.robot_drive.arcadeDrive(self.stick)
+        if self.switch1.get()==True:
+            self.motor1.set(self.stick.getRawAxis(1))
+            self.Servo1.set(self.stick.getRawAxis(2))
+            
+        else:
+            self.motor1.set(self.stick.getAxis(5))
+            self.Servo1.set(self.stick.getAxis(6))
+        
+        if self.switch2.get()==True:
+            self.motor2.set(int(self.stick.getRawButton(1)))
+            self.Servo2.set(int(self.stick.getRawButton(2)))
+        else:
+            self.motor2.set(int(self.stick.getRawButton(3)))
+            self.Servo2.set(int(self.stick.getRawButton(4)))
+
     def testPeriodic(self):
         """This function is called periodically during test mode."""
         wpilib.LiveWindow.run()
